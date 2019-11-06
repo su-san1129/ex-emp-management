@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
 
 import jp.co.sample.domain.Employee;
 
@@ -15,6 +15,8 @@ import jp.co.sample.domain.Employee;
  * @author takahiro.suzuki
  *
  */
+
+@Repository
 public class EmployeeRepository {
 	
 	@Autowired
@@ -36,7 +38,7 @@ public class EmployeeRepository {
 		employee.setTelephone(rs.getString("telephone"));
 		employee.setSalary(rs.getInt("salary"));
 		employee.setCharacteristics(rs.getString("characteristics"));
-		employee.setDependentsCount(rs.getInt("dependentsCount"));
+		employee.setDependentsCount(rs.getInt("dependents_count"));
 		return employee;
 	};
 	
@@ -46,7 +48,7 @@ public class EmployeeRepository {
 	 */
 	public List<Employee> findAll(){
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependentsCount ");
+		sql.append("SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_Count ");
 		sql.append("FROM employees ");
 		sql.append("ORDER BY hire_date;");
 		String paramsql = sql.toString();
@@ -61,7 +63,7 @@ public class EmployeeRepository {
 	 */
 	public Employee load(Integer id) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependentsCount ");
+		sql.append("SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count ");
 		sql.append("FROM employees ");
 		sql.append("WHERE id = :id;");
 		String paramsql = sql.toString();
@@ -75,9 +77,9 @@ public class EmployeeRepository {
 	 * @param employee
 	 */
 	public void update(Employee employee) {
-		SqlParameterSource params = new BeanPropertySqlParameterSource(employee);
-		String updateSql = "UPDATE employees SET dependentsCount = :dependentCount WHERE id = :id;";
-		template.update(updateSql, params);
+		String updateSql = "UPDATE employees SET dependents_count = :dependentsCount WHERE id = :id;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", employee.getId()).addValue("dependentsCount", employee.getDependentsCount());
+		template.update(updateSql, param);
 	}
 
 }
