@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.form.InsertAdministratorForm;
+import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 
 @Controller
@@ -20,6 +21,11 @@ public class AdministratorController {
 		return new InsertAdministratorForm();
 	}
 	
+	@ModelAttribute
+	private LoginForm setUpLoginForm() {
+		return new LoginForm();
+	}
+	
 	/**
 	 * insertページを表示する
 	 * @return
@@ -27,5 +33,14 @@ public class AdministratorController {
 	@RequestMapping("/toInsert")
 	public String toInsert() {
 		return "administrator/insert";
+	}
+	
+	/**
+	 * ログインページ
+	 * @return
+	 */
+	@RequestMapping("/")
+	public String toLogin() {
+		return "administrator/login";
 	}
 }
