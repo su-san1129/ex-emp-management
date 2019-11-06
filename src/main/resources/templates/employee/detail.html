@@ -16,41 +16,7 @@
 </head>
 <body>
 	<div class="container">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-						aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="list.html"
-						th:href="@{/employee/showList}"> <!-- 企業ロゴ --> <img
-						src="../../static/img/header_logo_small.png"
-						th:src="@{/img/header_logo_small.png}">
-					</a>
-				</div>
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse"
-					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="list.html">従業員管理</a></li>
-					</ul>
-					<p class="navbar-text navbar-right">
-						<span th:text="${session.administratorName + 'さん'}">山田さん</span>こんにちは！
-						&nbsp;&nbsp;&nbsp; <a href="../administrator/login.html"
-							class="navbar-link" th:href="@{/logout}">ログアウト</a>
-					</p>
-				</div>
-				<!-- /.navbar-collapse -->
-			</div>
-			<!-- /.container-fluid -->
-		</nav>
-
+		<div th:replace="shared/header"></div>
 		<!-- パンくずリスト -->
 		<ol class="breadcrumb">
 			<li><a href="list.html" th:href="@{/employee/showList}">従業員リスト</a></li>
@@ -68,7 +34,8 @@
 					<!-- ここから上を編集する必要はありません -->
 
 					<!-- ここにモックのform要素を貼り付けます -->
-					<form method="post" action="list.html" th:action="@{/employee/update}" th:object="${updateEmployeeForm}">
+					<form method="post" action="list.html"
+						th:action="@{/employee/update}" th:object="${updateEmployeeForm}">
 						<fieldset>
 							<legend>従業員情報</legend>
 							<table class="table table-striped">
@@ -117,9 +84,11 @@
 									<th nowrap>扶養人数</th>
 									<td><label class="error-messages"> 扶養人数を入力してください </label>
 										<label class="control-label" style="color: red"
-										for="dependentsCount"></label> <input type="hidden" name="id" th:value="${employee.id}">
-										<input type="text" name="dependentsCount" id="dependentsCount" th:value="${employee.dependentsCount}"
-										class="form-control" value="3"></td>
+										for="dependentsCount"></label> <input type="hidden" name="id"
+										th:value="${employee.id}"> <input type="text"
+										name="dependentsCount" id="dependentsCount"
+										th:value="${employee.dependentsCount}" class="form-control"
+										value="3"></td>
 								</tr>
 							</table>
 							<button type="submit" class="btn btn-primary">更新</button>
