@@ -1,5 +1,11 @@
 package jp.co.sample.form;
 
+/**
+ * 従業員登録で使用されるフォーム.
+ * 
+ * @author takahiro.suzuki
+ *
+ */
 public class InsertAdministratorForm {
 	
 	/** 名前 */

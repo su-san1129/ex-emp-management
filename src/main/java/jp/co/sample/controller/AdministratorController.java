@@ -14,6 +14,12 @@ import jp.co.sample.form.InsertAdministratorForm;
 import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 
+/**
+ * 管理者情報を操作するコントローラ.
+ * 
+ * @author takahiro.suzuki
+ *
+ */
 @Controller
 @RequestMapping("/")
 public class AdministratorController {
@@ -35,8 +41,9 @@ public class AdministratorController {
 	}
 	
 	/**
-	 * insertページを表示する
-	 * @return
+	 * 管理者情報登録ページを表示する.
+	 * 
+	 * @return 管理者情報登録ページ
 	 */
 	@RequestMapping("/toInsert")
 	public String toInsert() {
@@ -54,8 +61,8 @@ public class AdministratorController {
 	
 	/**
 	 * 管理者情報を挿入する
-	 * @param form
-	 * @return
+	 * @param form フォーム
+	 * @return ログイン画面にリダイレクト
 	 */
 	@RequestMapping("/insert")
 	public String insert(InsertAdministratorForm form) {
@@ -67,14 +74,15 @@ public class AdministratorController {
 	}
 	
 	/**
-	 * 
-	 * 管理者のログイン機能
-	 * @param form
-	 * @param model
-	 * @return
+	 * ログインをする.
 	 * 
 	 * メールアドレスとパスワードが一致しなければ、nullを返す。
 	 * 一致すれば、管理者情報を返す。
+	 * 
+	 * @param form フォーム
+	 * @param model リクエストスコープ
+	 * @return 従業員一覧画面
+	 * 
 	 */
 	@RequestMapping("/login")
 	public String login(LoginForm form, Model model) {
@@ -87,6 +95,5 @@ public class AdministratorController {
 			session.setAttribute("administratorName", administrator);
 			return "forward:/employee/showList";
 		}
-		
 	}
 }

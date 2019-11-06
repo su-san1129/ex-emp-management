@@ -1,6 +1,8 @@
 package jp.co.sample.form;
 
 /**
+ * ログインで使用するフォーム.
+ * 
  * @author takahiro.suzuki
  *
  */

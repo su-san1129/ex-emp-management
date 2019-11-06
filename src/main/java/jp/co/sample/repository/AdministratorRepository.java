@@ -11,6 +11,12 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.sample.domain.Administrator;
 
+/**
+ * administratorsテーブルを操作するリポジトリ.
+ * 
+ * @author takahiro.suzuki
+ *
+ */
 @Repository
 public class AdministratorRepository {
 	
@@ -30,8 +36,9 @@ public class AdministratorRepository {
 	};
 
 	/**
-	 * 管理者情報をSQLに挿入する
-	 * @param administrator
+	 * 管理者情報をSQLに挿入する.
+	 * 
+	 * @param administrator 管理者情報
 	 */
 	public void insert(Administrator administrator) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
@@ -47,10 +54,11 @@ public class AdministratorRepository {
 	}
 
 	/**
-	 * メールアドレスとパスワードから管理者情報を取得する
-	 * @param mailAddress
-	 * @param password
-	 * @return
+	 * メールアドレスとパスワードから管理者情報を取得する.
+	 * 
+	 * @param mailAddress メールアドレス
+	 * @param password パスワード
+	 * @return 管理者情報
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
 		String sql = "SELECT id, name, mail_address, password FROM administrators WHERE mail_address = :mailAddress AND password = :password;";

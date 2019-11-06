@@ -1,5 +1,11 @@
 package jp.co.sample.form;
 
+/**
+ * 従業員を更新するために使用するフォーム.
+ * 
+ * @author takahiro.suzuki
+ *
+ */
 public class UpdateEmployeeForm {
 	
 	/** 従業員ID */
