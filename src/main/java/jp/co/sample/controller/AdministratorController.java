@@ -52,7 +52,7 @@ public class AdministratorController {
 	
 	/**
 	 * ログインページ
-	 * @return
+	 * @return ログイン画面
 	 */
 	@RequestMapping("/")
 	public String toLogin() {

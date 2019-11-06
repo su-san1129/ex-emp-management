@@ -20,11 +20,24 @@ public class AdministratorService {
 	@Autowired
 	private AdministratorRepository administratorRepository;
 	
+	/**
+	 * 管理者を挿入する.
+	 * 
+	 * @param administrator 管理者情報
+	 */
 	public void insert(Administrator administrator) {
 		administratorRepository.insert(administrator);
 		
 	}
 	
+	/**
+	 * 管理者のログインをする.
+	 * 
+	 * リポジトリからログインの操作を呼び出し。
+	 * @param mailAddress メールアドレス
+	 * @param password パスワード
+	 * @return ログイン判定後の処理
+	 */
 	public Administrator login(String mailAddress, String password) {
 		return administratorRepository.findByMailAddressAndPassword(mailAddress, password);
 	}

@@ -2,7 +2,6 @@ package jp.co.sample.controller;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +29,7 @@ public class EmployeeController {
 	 * 従業員一覧を出力する.
 	 * 
 	 * 取得した従業員リストを従業員一覧ページに出力する。
-	 * @param model
+	 * @param model モデル
 	 * @return 従業員一覧画面
 	 */
 	@RequestMapping("/showList")
@@ -65,7 +64,6 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/update")
 	public String update(UpdateEmployeeForm form) {
-		System.out.println(form);
 		Employee employee = new Employee();
 		employee.setId( Integer.parseInt(form.getId()) );
 		employee.setDependentsCount( Integer.parseInt(form.getDependentsCount()));

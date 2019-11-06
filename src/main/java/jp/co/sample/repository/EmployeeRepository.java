@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Employee;
 
 /**
+ * employeesテーブルを操作するリポジトリ.
  * @author takahiro.suzuki
  *
  */
