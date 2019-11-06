@@ -40,10 +40,10 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
-										<label for="name"> 氏名: </label>
-										<label th:errors="*{name}" style="color: red"></label>
-										<input type="text" th:field="*{name}" name="name" id="name"
-											class="form-control" placeholder="山田太郎">
+										<label for="name"> 氏名: </label> <label th:errors="*{name}"
+											style="color: red"></label> <input type="text"
+											th:field="*{name}" name="name" id="name" class="form-control"
+											placeholder="山田太郎">
 									</div>
 								</div>
 							</div>
@@ -51,10 +51,10 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
-										<label for="mailAddress"> メールアドレス: </label>
-										<label th:errors="*{mailAddress}" style="color: red"></label>
-										<input th:field="*{mailAddress}" type="text"
-											name="mailAddress" id="mailAddress" class="form-control"
+										<label for="mailAddress"> メールアドレス: </label> <label
+											th:errors="*{mailAddress}" style="color: red"></label> <input
+											th:field="*{mailAddress}" type="text" name="mailAddress"
+											id="mailAddress" class="form-control"
 											placeholder="yamada@mail.com">
 									</div>
 								</div>
@@ -64,9 +64,9 @@
 								<div class="row">
 									<div class="col-sm-12">
 
-										<label for="passwaord"> パスワード: </label>
-										<label th:errors="*{password}" style="color: red"></label>
-										<input th:field="*{password}" type="password" name="password"
+										<label for="passwaord"> パスワード: </label> <label
+											th:errors="*{password}" style="color: red"></label> <input
+											th:field="*{password}" type="password" name="password"
 											id="password" class="form-control" placeholder="password">
 									</div>
 								</div>
@@ -89,8 +89,7 @@
 		</div>
 	</div>
 	<!-- end container -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="../../static/js/bootstrap.min.js"></script>
+	<div th:replace="shared/footer"></div>
+
 </body>
 </html>
