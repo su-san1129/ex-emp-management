@@ -20,7 +20,6 @@ public class AdministratorRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 	
-	@Autowired
 	private SimpleJdbcInsert insert;
 	
 	@PostConstruct
