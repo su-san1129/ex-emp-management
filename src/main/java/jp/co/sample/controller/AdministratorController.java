@@ -76,9 +76,6 @@ public class AdministratorController {
 	/**
 	 * ログインをする.
 	 * 
-	 * メールアドレスとパスワードが一致しなければ、nullを返す。
-	 * 一致すれば、管理者情報を返す。
-	 * 
 	 * @param form フォーム
 	 * @param model リクエストスコープ
 	 * @return 従業員一覧画面
@@ -92,8 +89,19 @@ public class AdministratorController {
 			System.out.println("error");
 			return toLogin();
 		} else {
-			session.setAttribute("administratorName", administrator);
+			session.setAttribute("administratorName", administrator.getName());
 			return "forward:/employee/showList";
 		}
+	}
+	
+	/**
+	 * ログアウトをする.
+	 * 
+	 * @return ログイン画面
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();  // 現在のsession情報が破棄される
+		return "redirect:/";
 	}
 }
