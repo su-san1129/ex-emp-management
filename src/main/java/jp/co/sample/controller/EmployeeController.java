@@ -5,6 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Employee;
@@ -24,6 +28,11 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
+	@ModelAttribute
+	private UpdateEmployeeForm setUpUpdateForm() {
+		return new UpdateEmployeeForm();
+	}
+	
 	
 	/**
 	 * 従業員一覧を出力する.
@@ -36,6 +45,7 @@ public class EmployeeController {
 	public String showList(Model model) {
 		List<Employee> employeeList = employeeService.showList();
 		model.addAttribute("employeeList", employeeList);
+		model.addAttribute("pageList", employeeService.pageList());
 		return "employee/list";
 		
 	}
@@ -63,13 +73,34 @@ public class EmployeeController {
 	 * @return 従業員の詳細情報
 	 */
 	@RequestMapping("/update")
-	public String update(UpdateEmployeeForm form) {
+	public String update(
+			@Validated UpdateEmployeeForm form
+			, BindingResult result
+			, Model model
+			) {
+		if(result.hasErrors()) {
+			 return showDetail(form.getId(), model);
+//			return "forward:/employee/showDetail;
+		}
 		Employee employee = new Employee();
 		employee.setId( Integer.parseInt(form.getId()) );
 		employee.setDependentsCount( Integer.parseInt(form.getDependentsCount()));
 		System.out.println(employee);
 		employeeService.update(employee);
 		return "redirect:/employee/showList";
+	}
+	
+	@RequestMapping("/findAllPageNumber/{index}")
+	public String findAllPageNumber(@PathVariable("index") Integer index, Model model) {
+		List<Employee> employeeList = employeeService.findAllEmployeeFromPageNumber(index);
+		model.addAttribute("employeeList", employeeList);
+		System.out.println(employeeService.pageList().size());
+		model.addAttribute("pageList", employeeService.pageList());
+		model.addAttribute("index", index);
+		model.addAttribute("preIndex", (index-1));
+		model.addAttribute("nextIndex", (index+1));
+		
+		return "employee/list";
 	}
 	
 	

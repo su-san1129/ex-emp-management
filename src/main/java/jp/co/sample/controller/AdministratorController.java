@@ -91,7 +91,10 @@ public class AdministratorController {
 	 * 
 	 */
 	@RequestMapping("/login")
-	public String login(LoginForm form, Model model) {
+	public String login(
+			@Validated LoginForm form
+			, BindingResult result
+			, Model model) {
 		Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
 		if (administrator == null) {
 			model.addAttribute("loginError", "メールアドレスまたはパスワードが不正です。");

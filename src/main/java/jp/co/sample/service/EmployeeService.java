@@ -1,5 +1,6 @@
 package jp.co.sample.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,27 @@ public class EmployeeService {
 	public void update(Employee employee) {
 		employeeRepository.update(employee);
 	}
-
+	
+	public Integer countData() {
+		return employeeRepository.findAllCount();
+	}
+	
+	public List<Integer> pageList(){
+		Integer count = countData();
+		List<Integer> pageList = new ArrayList<>();
+		if( count % 10 == 0) {
+			for (int i = 1; i <= count/10; i++) {
+				pageList.add(i);
+			} 
+		} else {
+			for (int i = 1; i <= count/10 + 1; i++) {
+				pageList.add(i);
+			}
+		}
+		return pageList;
+	}
+	
+	public List<Employee> findAllEmployeeFromPageNumber(Integer index){
+		return employeeRepository.findeAllpageNumberEmployee(index);
+	}
 }
